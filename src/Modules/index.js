@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { all } from "redux-saga/effects";
 import { beerReducer, cartReducer } from "./reducers";
+import beerSaga from "./sagas/beer";
 //watcher saga -> actions -> worker saga
 // import loading from "./loading";
 import { enableES5 } from "immer";
@@ -13,5 +14,5 @@ export default rootReducer;
 
 //wathcer saga
 export function* rootSaga() {
-  yield all([]);
+  yield all([beerSaga()]);
 }
