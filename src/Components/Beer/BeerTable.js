@@ -13,7 +13,6 @@ const BeerTable = () => {
   const dispatch = useDispatch();
   const { columnHeader, options } = useSelector((state) => state.beerTableReducer);
   const { beerList } = useSelector((state) => state.beerReducer);
-  console.log("rerender");
 
   const handleDragged = useCallback(
     (sourceIndex, destinationIndex) => {
