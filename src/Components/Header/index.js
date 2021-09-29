@@ -7,6 +7,7 @@ const Header = (props) => {
   return (
     <Container>
       <Nav>
+        <Link to="/home">home</Link>
         <Link to="/beerlist">비어리스트</Link>
       </Nav>
     </Container>
