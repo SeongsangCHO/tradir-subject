@@ -15,6 +15,6 @@ BeerImage.propTypes = {
 export default BeerImage;
 
 const Wrapper = styled.img`
-  max-width: 150px;
-  max-height: 150px;
+  max-width: 75px;
+  max-height: 75px;
 `;

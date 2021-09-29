@@ -1,4 +1,4 @@
 import beerReducer from "./beer";
 import cartReducer from "./cart";
-
-export { beerReducer, cartReducer };
+import beerTableColumnHeaderReducer from "./beerTableColumnHeader";
+export { beerReducer, cartReducer, beerTableColumnHeaderReducer };

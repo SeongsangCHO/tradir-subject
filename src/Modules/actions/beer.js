@@ -1,19 +1,19 @@
 import { BEER_ACTION_TYPES } from "Modules/actions/types";
 
-export const requestGetBeers = () => {
+export const requestGetBeerList = () => {
   return {
     type: BEER_ACTION_TYPES.GET_BEERS_REQUEST,
   };
 };
 
-export const successGetBeers = (data) => {
+export const successGetBeerList = (data) => {
   return {
     type: BEER_ACTION_TYPES.GET_BEERS_SUCCESS,
     payload: data,
   };
 };
 
-export const failureGetBeers = () => {
+export const failureGetBeerList = () => {
   return {
     type: BEER_ACTION_TYPES.GET_BEERS_FAILURE,
   };
