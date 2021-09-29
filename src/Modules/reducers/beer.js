@@ -3,7 +3,7 @@ import { STATUS } from "Utils/constant";
 
 const initState = {
   beerList: [],
-  status: "",
+  status: STATUS.loading,
 };
 
 const beerReducer = (state = initState, action) => {
@@ -16,7 +16,7 @@ const beerReducer = (state = initState, action) => {
     case T.GET_BEERS_SUCCESS:
       return {
         ...state,
-        beerList: [...action.payload],
+        beerList: action.payload,
         status: STATUS.success,
       };
     case T.GET_BEERS_FAILURE:
