@@ -1,90 +1,85 @@
-import React from "react";
+import React, { useCallback, useEffect, forwardRef, useState } from "react";
 import PropTypes from "prop-types";
 import MaterialTable from "material-table";
 import styled from "styled-components";
 import { tableIcons } from "Utils/tableIcons";
 import { useSelector } from "react-redux";
-import BeerImage from "./BeerImage";
+import { beerTableColumnOrderChange } from "Utils/beerTableColumnOrderChange";
+import { useDispatch } from "react-redux";
+import { setBeerTableColumnHeader } from "Modules/actions/beerTable";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 
-const BeerTable = (props) => {
-  const { beerList, status } = useSelector((state) => state.beerReducer);
-  console.log(beerList);
+const BeerTable = () => {
+  const dispatch = useDispatch();
+  const { columnHeader, options } = useSelector((state) => state.beerTableReducer);
+  const { beerList } = useSelector((state) => state.beerReducer);
+  console.log("rerender");
 
-  const handleDragged = (sourceIndex, destinationIndex) => {
-    console.log("draged");
-  };
+  const handleDragged = useCallback(
+    (sourceIndex, destinationIndex) => {
+      const changedColumns = beerTableColumnOrderChange(
+        sourceIndex,
+        destinationIndex,
+        columnHeader
+      );
+      console.log(columnHeader, changedColumns, "handleDragged");
+
+      dispatch(setBeerTableColumnHeader(changedColumns));
+    },
+    [columnHeader]
+  );
+
   return (
     <Wrapper>
       <MaterialTable
-        isLoading={status == "loading" ? true : false}
         icons={tableIcons}
-        data={beerList}
         onColumnDragged={handleDragged}
-        columns={[
-          {
-            title: "Name",
-            field: "name",
-          },
-          {
-            title: "Product Image",
-            field: "image_url",
-            render: (item) => (
-              <BeerImage name={item.name} src={item.image_url}></BeerImage>
-            ),
-          },
-          {
-            title: "description",
-            field: "tagline",
-          },
-          {
-            title: "ABV",
-            field: "abv",
-          },
-          {
-            title: "IBU",
-            field: "ibu",
-          },
-          {
-            title: "SRM",
-            field: "srm",
-          },
-          {
-            title: "PH",
-            field: "ph",
-          },
-          {
-            title: "EBC",
-            field: "ebc",
-          },
-        ]}
+        columns={columnHeader}
+        data={beerList}
+        title="Beer List"
         style={{
-          padding: "5px 5px",
+          padding: "0px 30px",
         }}
         options={{
           sorting: false,
+          cellStyle: {
+            width: "100px",
+            textAlign: "center",
+            wordWrap: "break-word",
+          },
           headerStyle: {
             position: "unset",
-            textAlign: "center",
-            padding: "5px 5px",
-            width: "100%",
-            overflow: "visible",
-          },
-          cellStyle: {
+            minWidth: "100px",
             textAlign: "center",
           },
         }}
-        title="Demo Title"
+        actions={[
+          {
+            icon: () => <ShoppingCartOutlined align="center" />,
+            tooltip: "Add your cart",
+            onClick: (event, data) => {
+              console.log(data);
+              // Do save operation
+            },
+          },
+        ]}
       />
     </Wrapper>
   );
 };
 
-BeerTable.propTypes = {};
+BeerTable.propTypes = {
+  // beerList: PropTypes.array,
+  // status: PropTypes.bool,
+};
 
-export default BeerTable;
+export default React.memo(BeerTable);
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   width: 100%;
   max-width: 1080px;
   margin: 0 auto;
+  & td > div {
+    justify-content: center;
+  }
 `;
