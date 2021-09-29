@@ -1,15 +1,14 @@
 import { combineReducers } from "redux";
 import { all } from "redux-saga/effects";
-
+import { beerReducer, cartReducer } from "./reducers";
 //watcher saga -> actions -> worker saga
 // import loading from "./loading";
-// import { enableES5 } from "immer";
+import { enableES5 } from "immer";
 
-// enableES5();
+enableES5();
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({ beerReducer, cartReducer });
 
-// export default rootReducer;
 export default rootReducer;
 
 //wathcer saga
