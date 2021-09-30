@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const BeerImage = (props) => {
-  const { src, name } = props;
-  return <Wrapper alt={name + " beer image"} src={src}></Wrapper>;
+const BeerImage = ({ src, name, ...restParams }) => {
+  return <Wrapper alt={name + " beer image"} src={src} {...restParams}></Wrapper>;
 };
 
 BeerImage.propTypes = {

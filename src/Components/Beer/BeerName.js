@@ -25,6 +25,7 @@ const Container = styled.div`
   padding: 5px;
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 8px;
+  text-align: center;
 `;
 const Text = styled.span`
   cursor: pointer;

@@ -105,7 +105,12 @@ const BeerTable = () => {
             icon: () => <ShoppingCartOutlined />,
             tooltip: [1].includes(data.id) ? "You alread add" : "Add your cart",
             onClick: (event, data) => {
-              dispatch(requestAddCartItem(data));
+              dispatch(
+                requestAddCartItem({
+                  ...data,
+                  price: Math.ceil((Math.random() * 5000 + 5000) / 100) * 100,
+                })
+              );
               // Do save operation
             },
             disabled: [1].includes(data.id),
@@ -124,9 +129,6 @@ BeerTable.propTypes = {
 export default React.memo(BeerTable);
 
 const Wrapper = styled.section`
-  width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
   & td > div {
     justify-content: center;
   }
