@@ -10,22 +10,58 @@ import { setBeerTableColumnHeader } from "Modules/actions/beerTable";
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import { requestAddCartItem } from "Modules/actions/cart";
 import BeerFilter from "./BeerFilter";
+import { setBeerListFilter } from "Modules/actions/beer";
 
 const BeerTable = () => {
   const dispatch = useDispatch();
   const { columnHeader } = useSelector((state) => state.beerTableReducer);
-  const { beerList } = useSelector((state) => state.beerReducer);
-  const handleDragged = useCallback(
-    (sourceIndex, destinationIndex) => {
-      const changedColumns = beerTableColumnOrderChange(
-        sourceIndex,
-        destinationIndex,
-        columnHeader
-      );
-      dispatch(setBeerTableColumnHeader(changedColumns));
-    },
-    [columnHeader]
-  );
+  const { beerList, filteredBeerList } = useSelector((state) => state.beerReducer);
+  const [abvFilterGroup, setAbvFilterGroup] = useState({});
+  const [filterClickedId, setFilterClickedId] = useState({});
+
+  const handleDragged = (sourceIndex, destinationIndex) => {
+    const changedColumns = beerTableColumnOrderChange(
+      sourceIndex,
+      destinationIndex,
+      columnHeader
+    );
+    dispatch(setBeerTableColumnHeader(changedColumns));
+  };
+  const handleFilter = (standard) => {
+    setFilterClickedId((prev) => ({
+      ...prev,
+      [standard]: !filterClickedId[standard],
+    }));
+    const tmp = { ...filterClickedId, [standard]: !filterClickedId[standard] };
+    const clickedFilter = Object.keys(tmp).filter((id) => tmp[id] === true);
+    if (clickedFilter.length === 0) {
+      dispatch(setBeerListFilter(beerList));
+    } else {
+      const printData = clickedFilter.map((id) => abvFilterGroup[id]).flat();
+      dispatch(setBeerListFilter(printData));
+    }
+  };
+  const sortAbvOrder = (list) => {
+    const sorted = list.sort((a, b) => a.abv - b.abv);
+    return sorted;
+  };
+  const createAbvFilterGroup = () => {
+    const abvGroup = {};
+    const filterId = {};
+    sortAbvOrder(beerList).forEach((beer) => {
+      const abvStandard = Math.floor(beer.abv / 5);
+      if (!abvGroup.hasOwnProperty(abvStandard)) {
+        abvGroup[abvStandard] = [];
+        filterId[abvStandard] = false;
+      }
+      abvGroup[abvStandard].push(beer);
+    });
+    setAbvFilterGroup({ ...abvGroup });
+    setFilterClickedId({ ...filterId });
+  };
+  useEffect(() => {
+    createAbvFilterGroup();
+  }, [beerList]);
 
   return (
     <Wrapper>
@@ -33,7 +69,7 @@ const BeerTable = () => {
         icons={tableIcons}
         onColumnDragged={handleDragged}
         columns={columnHeader}
-        data={beerList}
+        data={filteredBeerList}
         title="Beer List"
         style={{
           padding: "0px 30px",
@@ -56,7 +92,12 @@ const BeerTable = () => {
           Toolbar: (props) => (
             <div>
               <MTableToolbar {...props} />
-              <BeerFilter beerList={beerList} />
+              <BeerFilter
+                beerList={beerList}
+                abvFilterGroup={abvFilterGroup}
+                filterClickedId={filterClickedId}
+                handleFilter={handleFilter}
+              />
             </div>
           ),
         }}
