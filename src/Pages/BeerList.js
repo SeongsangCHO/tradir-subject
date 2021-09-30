@@ -12,7 +12,7 @@ const BeerList = () => {
   }, []);
   return (
     <div>
-      Beerlist page
+      Beerlist
       <BeerTable />
     </div>
   );
