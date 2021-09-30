@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, forwardRef, useState } from "react";
 import PropTypes from "prop-types";
-import MaterialTable from "material-table";
+import MaterialTable, { MTableToolbar } from "material-table";
 import styled from "styled-components";
 import { tableIcons } from "Utils/tableIcons";
 import { useSelector } from "react-redux";
@@ -8,12 +8,13 @@ import { beerTableColumnOrderChange } from "Utils/beerTableColumnOrderChange";
 import { useDispatch } from "react-redux";
 import { setBeerTableColumnHeader } from "Modules/actions/beerTable";
 import { ShoppingCartOutlined } from "@material-ui/icons";
+import { requestAddCartItem } from "Modules/actions/cart";
+import BeerFilter from "./BeerFilter";
 
 const BeerTable = () => {
   const dispatch = useDispatch();
-  const { columnHeader, options } = useSelector((state) => state.beerTableReducer);
+  const { columnHeader } = useSelector((state) => state.beerTableReducer);
   const { beerList } = useSelector((state) => state.beerReducer);
-
   const handleDragged = useCallback(
     (sourceIndex, destinationIndex) => {
       const changedColumns = beerTableColumnOrderChange(
@@ -21,8 +22,6 @@ const BeerTable = () => {
         destinationIndex,
         columnHeader
       );
-      console.log(columnHeader, changedColumns, "handleDragged");
-
       dispatch(setBeerTableColumnHeader(changedColumns));
     },
     [columnHeader]
@@ -40,24 +39,34 @@ const BeerTable = () => {
           padding: "0px 30px",
         }}
         options={{
+          tableLayout: "fixed",
           sorting: false,
           cellStyle: {
-            width: "100px",
             textAlign: "center",
             wordWrap: "break-word",
           },
           headerStyle: {
             position: "unset",
-            minWidth: "100px",
             textAlign: "center",
+            backgroundColor: "#01579b",
+            color: "#FFF",
           },
+        }}
+        components={{
+          Toolbar: (props) => (
+            <div>
+              <MTableToolbar {...props} />
+              <BeerFilter beerList={beerList} />
+            </div>
+          ),
         }}
         actions={[
           {
-            icon: () => <ShoppingCartOutlined align="center" />,
+            icon: () => <ShoppingCartOutlined />,
             tooltip: "Add your cart",
             onClick: (event, data) => {
               console.log(data);
+              dispatch(requestAddCartItem(data));
               // Do save operation
             },
           },
