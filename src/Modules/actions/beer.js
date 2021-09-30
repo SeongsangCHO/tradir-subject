@@ -18,3 +18,10 @@ export const failureGetBeerList = () => {
     type: T.GET_BEERS_FAILURE,
   };
 };
+
+export const setBeerListFilter = (data) => {
+  return {
+    type: T.SET_BEERS_FILTER,
+    payload: data,
+  };
+};

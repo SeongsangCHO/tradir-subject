@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestGetBeerList } from "Modules/actions/beer";
 import BeerTable from "Components/Beer/BeerTable";
 
-const Beerlist = () => {
+const BeerList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,4 +18,4 @@ const Beerlist = () => {
   );
 };
 
-export default Beerlist;
+export default BeerList;

@@ -42,8 +42,7 @@ const BeerTable = () => {
     }
   };
   const sortAbvOrder = (list) => {
-    const sorted = list.sort((a, b) => a.abv - b.abv);
-    return sorted;
+    return list.sort((a, b) => a.abv - b.abv);
   };
   const createAbvFilterGroup = () => {
     const abvGroup = {};
@@ -102,15 +101,15 @@ const BeerTable = () => {
           ),
         }}
         actions={[
-          {
+          (data) => ({
             icon: () => <ShoppingCartOutlined />,
-            tooltip: "Add your cart",
+            tooltip: [1].includes(data.id) ? "You alread add" : "Add your cart",
             onClick: (event, data) => {
-              console.log(data);
               dispatch(requestAddCartItem(data));
               // Do save operation
             },
-          },
+            disabled: [1].includes(data.id),
+          }),
         ]}
       />
     </Wrapper>
