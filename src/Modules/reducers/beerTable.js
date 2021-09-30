@@ -44,15 +44,22 @@ const initState = {
 };
 
 const beerTableReducer = (state = initState, action) => {
-  console.log("beerTableReducer", state);
   switch (action.type) {
     case T.SET_COLUMN_HEADER:
       return {
         ...state,
-        columnHeader: action.payload,
+        columnHeader: [...action.payload],
       };
     default:
-      return state;
+      return {
+        ...state,
+        columnHeader: state.columnHeader.map((el) => {
+          if (el.tableData) {
+            el.tableData.width = "";
+          }
+          return el;
+        }),
+      };
   }
 };
 
