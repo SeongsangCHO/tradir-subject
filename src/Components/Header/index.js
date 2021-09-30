@@ -9,6 +9,7 @@ const Header = (props) => {
       <Nav>
         <Link to="/home">home</Link>
         <Link to="/beerlist">비어리스트</Link>
+        <Link to="/cartview">cart</Link>
       </Nav>
     </Container>
   );

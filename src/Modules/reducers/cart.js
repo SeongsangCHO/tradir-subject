@@ -1,8 +1,21 @@
-const initState = {};
+import { CART_ACTION_TYPES as T } from "Modules/actions/types";
+
+const initState = {
+  cartItems: [],
+};
 
 const cartReducer = (state = initState, action) => {
   switch (action.type) {
-    case 1:
+    case T.ADD_CART_ITEM_SUCCESS:
+      return {
+        ...state,
+        cartItems: state.cartItems.concat(action.payload),
+      };
+    case T.ADD_CART_ITEM_FAILURE:
+      return { ...state };
+    case T.DELETE_CART_ITEM_FAILURE:
+      return { ...state };
+    case T.DELETE_CART_ITEM_FAILURE:
       return { ...state };
     default:
       return state;
