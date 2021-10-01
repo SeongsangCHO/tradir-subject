@@ -13,8 +13,10 @@ const cartReducer = (state = initState, action) => {
       };
     case T.ADD_CART_ITEM_FAILURE:
       return { ...state };
-    case T.DELETE_CART_ITEM_FAILURE:
-      return { ...state };
+    case T.DELETE_CART_ITEM_SUCCESS:
+      return {
+        cartItems: state.cartItems.filter((item) => item.id !== action.id),
+      };
     case T.DELETE_CART_ITEM_FAILURE:
       return { ...state };
     default:

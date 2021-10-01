@@ -20,16 +20,17 @@ export const failureAddCartItem = () => {
   };
 };
 
-export const requestDeleteCartItem = () => {
+export const requestDeleteCartItem = (id) => {
   return {
     type: T.DELETE_CART_ITEM_REQUEST,
+    id,
   };
 };
 
-export const successDeleteCartItem = (data) => {
+export const successDeleteCartItem = (id) => {
   return {
     type: T.DELETE_CART_ITEM_SUCCESS,
-    payload: data,
+    id,
   };
 };
 
