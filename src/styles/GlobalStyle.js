@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   }
   button {
     cursor: pointer;
-    outline: none;
+    border: none;
   }
   a {
     text-decoration: none;

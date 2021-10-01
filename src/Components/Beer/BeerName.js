@@ -25,11 +25,18 @@ const Container = styled.div`
   padding: 5px;
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 8px;
+  text-align: center;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  overflow: hidden;
 `;
 const Text = styled.span`
-  cursor: pointer;
   position: relative;
   font-size: 1em;
   color: white;
   font-weight: bold;
+  @media screen and (max-width: 768px) {
+    white-space: nowrap;
+    max-width: 40px;
+  }
 `;

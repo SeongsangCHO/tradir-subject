@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { requestGetBeerList } from "Modules/actions/beer";
 import BeerTable from "Components/Beer/BeerTable";
+import PageTemplate from "Components/Common/PageTemplate";
 
 const BeerList = () => {
   const dispatch = useDispatch();
@@ -11,10 +12,10 @@ const BeerList = () => {
     dispatch(requestGetBeerList());
   }, []);
   return (
-    <div>
+    <PageTemplate>
       Beerlist
       <BeerTable />
-    </div>
+    </PageTemplate>
   );
 };
 

@@ -13,16 +13,18 @@ function* watchAddCartItem(action) {
   try {
     yield put(successAddCartItem(payload));
   } catch (error) {
-    console.log(error);
     yield put(failureGetBeerList());
+    console.error(error);
   }
 }
 
 function* watchDeleteCartItem(action) {
-  if (res.status === 200) {
-    yield put(successAddCartItem(data));
-  } else {
-    yield put(failureGetBeerList());
+  const { id } = action;
+  try {
+    yield put(successDeleteCartItem(id));
+  } catch (error) {
+    yield put(failureDeleteCartItem());
+    console.error(error);
   }
 }
 

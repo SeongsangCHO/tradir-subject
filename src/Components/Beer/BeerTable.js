@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, forwardRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import MaterialTable, { MTableToolbar } from "material-table";
 import styled from "styled-components";
@@ -12,13 +12,33 @@ import { requestAddCartItem } from "Modules/actions/cart";
 import BeerFilter from "./BeerFilter";
 import { setBeerListFilter } from "Modules/actions/beer";
 
+const BEER_TABLE_OPTIONS = {
+  tableLayout: "fixed",
+  sorting: false,
+  cellStyle: {
+    textAlign: "center",
+    wordWrap: "break-word",
+  },
+  headerStyle: {
+    position: "unset",
+    textAlign: "center",
+    backgroundColor: "#01579b",
+    color: "#FFF",
+  },
+};
+
 const BeerTable = () => {
   const dispatch = useDispatch();
   const { columnHeader } = useSelector((state) => state.beerTableReducer);
   const { beerList, filteredBeerList } = useSelector((state) => state.beerReducer);
+  const { cartItems } = useSelector((state) => state.cartReducer);
   const [abvFilterGroup, setAbvFilterGroup] = useState({});
   const [filterClickedId, setFilterClickedId] = useState({});
 
+  const checkBeerItemInCart = useCallback(
+    (id) => cartItems.map((item) => item.id).includes(id),
+    [cartItems.length]
+  );
   const handleDragged = (sourceIndex, destinationIndex) => {
     const changedColumns = beerTableColumnOrderChange(
       sourceIndex,
@@ -44,7 +64,7 @@ const BeerTable = () => {
   const sortAbvOrder = (list) => {
     return list.sort((a, b) => a.abv - b.abv);
   };
-  const createAbvFilterGroup = () => {
+  const createAbvFilterGroup = useCallback(() => {
     const abvGroup = {};
     const filterId = {};
     sortAbvOrder(beerList).forEach((beer) => {
@@ -57,7 +77,7 @@ const BeerTable = () => {
     });
     setAbvFilterGroup({ ...abvGroup });
     setFilterClickedId({ ...filterId });
-  };
+  }, [beerList]);
   useEffect(() => {
     createAbvFilterGroup();
   }, [beerList]);
@@ -70,23 +90,7 @@ const BeerTable = () => {
         columns={columnHeader}
         data={filteredBeerList}
         title="Beer List"
-        style={{
-          padding: "0px 30px",
-        }}
-        options={{
-          tableLayout: "fixed",
-          sorting: false,
-          cellStyle: {
-            textAlign: "center",
-            wordWrap: "break-word",
-          },
-          headerStyle: {
-            position: "unset",
-            textAlign: "center",
-            backgroundColor: "#01579b",
-            color: "#FFF",
-          },
-        }}
+        options={BEER_TABLE_OPTIONS}
         components={{
           Toolbar: (props) => (
             <div>
@@ -103,12 +107,18 @@ const BeerTable = () => {
         actions={[
           (data) => ({
             icon: () => <ShoppingCartOutlined />,
-            tooltip: [1].includes(data.id) ? "You alread add" : "Add your cart",
-            onClick: (event, data) => {
-              dispatch(requestAddCartItem(data));
-              // Do save operation
+            tooltip: checkBeerItemInCart(data.id)
+              ? "You alread add"
+              : "Add your cart",
+            onClick: (_, data) => {
+              dispatch(
+                requestAddCartItem({
+                  ...data,
+                  price: Math.ceil((Math.random() * 5000 + 5000) / 100) * 100,
+                })
+              );
             },
-            disabled: [1].includes(data.id),
+            disabled: checkBeerItemInCart(data.id),
           }),
         ]}
       />
@@ -116,17 +126,11 @@ const BeerTable = () => {
   );
 };
 
-BeerTable.propTypes = {
-  // beerList: PropTypes.array,
-  // status: PropTypes.bool,
-};
+BeerTable.propTypes = {};
 
 export default React.memo(BeerTable);
 
 const Wrapper = styled.section`
-  width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
   & td > div {
     justify-content: center;
   }
