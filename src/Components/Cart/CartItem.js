@@ -66,10 +66,11 @@ const CartBeerPrice = styled.span`
 `;
 const DeleteButton = styled.button`
   align-self: center;
-  border: none;
   height: 100%;
   background-color: white;
-  & > svg:hover {
-    fill: tomato;
+  &:hover {
+    & > svg {
+      fill: tomato;
+    }
   }
 `;

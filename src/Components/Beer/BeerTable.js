@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, forwardRef, useState, useMemo } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import MaterialTable, { MTableToolbar } from "material-table";
 import styled from "styled-components";
@@ -11,6 +11,21 @@ import { ShoppingCartOutlined } from "@material-ui/icons";
 import { requestAddCartItem } from "Modules/actions/cart";
 import BeerFilter from "./BeerFilter";
 import { setBeerListFilter } from "Modules/actions/beer";
+
+const BEER_TABLE_OPTIONS = {
+  tableLayout: "fixed",
+  sorting: false,
+  cellStyle: {
+    textAlign: "center",
+    wordWrap: "break-word",
+  },
+  headerStyle: {
+    position: "unset",
+    textAlign: "center",
+    backgroundColor: "#01579b",
+    color: "#FFF",
+  },
+};
 
 const BeerTable = () => {
   const dispatch = useDispatch();
@@ -75,23 +90,7 @@ const BeerTable = () => {
         columns={columnHeader}
         data={filteredBeerList}
         title="Beer List"
-        style={{
-          padding: "0px 30px",
-        }}
-        options={{
-          tableLayout: "fixed",
-          sorting: false,
-          cellStyle: {
-            textAlign: "center",
-            wordWrap: "break-word",
-          },
-          headerStyle: {
-            position: "unset",
-            textAlign: "center",
-            backgroundColor: "#01579b",
-            color: "#FFF",
-          },
-        }}
+        options={BEER_TABLE_OPTIONS}
         components={{
           Toolbar: (props) => (
             <div>
@@ -111,14 +110,13 @@ const BeerTable = () => {
             tooltip: checkBeerItemInCart(data.id)
               ? "You alread add"
               : "Add your cart",
-            onClick: (event, data) => {
+            onClick: (_, data) => {
               dispatch(
                 requestAddCartItem({
                   ...data,
                   price: Math.ceil((Math.random() * 5000 + 5000) / 100) * 100,
                 })
               );
-              // Do save operation
             },
             disabled: checkBeerItemInCart(data.id),
           }),
@@ -128,10 +126,7 @@ const BeerTable = () => {
   );
 };
 
-BeerTable.propTypes = {
-  // beerList: PropTypes.array,
-  // status: PropTypes.bool,
-};
+BeerTable.propTypes = {};
 
 export default React.memo(BeerTable);
 
