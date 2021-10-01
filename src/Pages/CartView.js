@@ -26,7 +26,6 @@ CartView.propTypes = {};
 export default CartView;
 
 const CartViewPageTemplate = styled(PageTemplate)`
-  width: 100%;
   max-width: 480px;
   margin: 0 auto;
 `;
