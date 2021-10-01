@@ -16,6 +16,7 @@ const BeerTable = () => {
   const dispatch = useDispatch();
   const { columnHeader } = useSelector((state) => state.beerTableReducer);
   const { beerList, filteredBeerList } = useSelector((state) => state.beerReducer);
+  const { cartItems } = useSelector((state) => state.cartReducer);
   const [abvFilterGroup, setAbvFilterGroup] = useState({});
   const [filterClickedId, setFilterClickedId] = useState({});
 
@@ -113,7 +114,7 @@ const BeerTable = () => {
               );
               // Do save operation
             },
-            disabled: [1].includes(data.id),
+            disabled: cartItems.map((item) => item.id).includes(data.id),
           }),
         ]}
       />
