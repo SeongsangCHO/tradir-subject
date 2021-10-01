@@ -1,20 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { requestGetBeerList } from "Modules/actions/beer";
 
 //N으로 나누는 값 상수처리
 
 const BeerFilter = ({ abvFilterGroup, filterClickedId, handleFilter }) => {
+  const dispatch = useDispatch();
   const filterButtonText = (standard, idx) => {
     if (idx === 0) {
       return `${(standard + 1) * 5}미만`;
     }
     return `${standard * 5}이상, ${(standard + 1) * 5}미만`;
   };
-
+  const isActiveAllFilter = () => {
+    return Object.values(filterClickedId).every((isClicked) => isClicked === false);
+  };
+  const getBeerListData = () => {
+    dispatch(requestGetBeerList());
+  };
   return (
     <Container>
-      <FilterButton>All</FilterButton>
+      <FilterButton onClick={getBeerListData} isClicked={isActiveAllFilter()}>
+        All
+      </FilterButton>
       {Object.keys(abvFilterGroup).map((standard, idx) => (
         <FilterButton
           isClicked={filterClickedId[standard]}
@@ -37,9 +47,20 @@ BeerFilter.propTypes = {
 export default BeerFilter;
 
 const Container = styled.div`
-  padding: 24px;
+  padding: 8px 0px;
+  & button + button {
+    margin-left: 8px;
+  }
 `;
 
 const FilterButton = styled.button`
-  background-color: ${(props) => (props.isClicked ? "tomato" : "white")};
+  background-color: ${(props) => (props.isClicked ? "tomato" : "gray")};
+  border-radius: 8px;
+  padding: 5px;
+  color: white;
+  min-width: 30px;
+  &:hover {
+    transition: 0.2s;
+    font-weight: bold;
+  }
 `;
