@@ -13,7 +13,7 @@ export default PageTemplate;
 
 const Template = styled.main`
   width: 100%;
-  max-width: 1080px;
+  max-width: 1220px;
   margin: 0 auto;
   padding: 50px 30px;
 `;

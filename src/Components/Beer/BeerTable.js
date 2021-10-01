@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, forwardRef, useState } from "react";
+import React, { useCallback, useEffect, forwardRef, useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import MaterialTable, { MTableToolbar } from "material-table";
 import styled from "styled-components";
@@ -20,6 +20,7 @@ const BeerTable = () => {
   const [abvFilterGroup, setAbvFilterGroup] = useState({});
   const [filterClickedId, setFilterClickedId] = useState({});
 
+  const cartItemIds = useMemo(() => cartItems.map((item) => item.id), [cartItems]);
   const handleDragged = (sourceIndex, destinationIndex) => {
     const changedColumns = beerTableColumnOrderChange(
       sourceIndex,
@@ -104,7 +105,9 @@ const BeerTable = () => {
         actions={[
           (data) => ({
             icon: () => <ShoppingCartOutlined />,
-            tooltip: [1].includes(data.id) ? "You alread add" : "Add your cart",
+            tooltip: cartItemIds.includes(data.id)
+              ? "You alread add"
+              : "Add your cart",
             onClick: (event, data) => {
               dispatch(
                 requestAddCartItem({
@@ -114,7 +117,7 @@ const BeerTable = () => {
               );
               // Do save operation
             },
-            disabled: cartItems.map((item) => item.id).includes(data.id),
+            disabled: cartItemIds.includes(data.id),
           }),
         ]}
       />

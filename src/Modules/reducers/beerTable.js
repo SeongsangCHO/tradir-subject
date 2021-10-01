@@ -19,10 +19,6 @@ const initState = {
       ),
     },
     {
-      title: "description",
-      field: "tagline",
-    },
-    {
       title: "ABV",
       field: "abv",
     },
@@ -33,14 +29,6 @@ const initState = {
     {
       title: "SRM",
       field: "srm",
-    },
-    {
-      title: "PH",
-      field: "ph",
-    },
-    {
-      title: "EBC",
-      field: "ebc",
     },
   ],
 };

@@ -20,8 +20,6 @@ function* watchAddCartItem(action) {
 
 function* watchDeleteCartItem(action) {
   const { id } = action;
-  console.log(action, id);
-
   try {
     yield put(successDeleteCartItem(id));
   } catch (error) {
