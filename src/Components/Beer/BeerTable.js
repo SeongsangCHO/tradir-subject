@@ -20,7 +20,10 @@ const BeerTable = () => {
   const [abvFilterGroup, setAbvFilterGroup] = useState({});
   const [filterClickedId, setFilterClickedId] = useState({});
 
-  const cartItemIds = useMemo(() => cartItems.map((item) => item.id), [cartItems]);
+  const checkBeerItemInCart = useCallback(
+    (id) => cartItems.map((item) => item.id).includes(id),
+    [cartItems.length]
+  );
   const handleDragged = (sourceIndex, destinationIndex) => {
     const changedColumns = beerTableColumnOrderChange(
       sourceIndex,
@@ -46,7 +49,7 @@ const BeerTable = () => {
   const sortAbvOrder = (list) => {
     return list.sort((a, b) => a.abv - b.abv);
   };
-  const createAbvFilterGroup = () => {
+  const createAbvFilterGroup = useCallback(() => {
     const abvGroup = {};
     const filterId = {};
     sortAbvOrder(beerList).forEach((beer) => {
@@ -59,7 +62,7 @@ const BeerTable = () => {
     });
     setAbvFilterGroup({ ...abvGroup });
     setFilterClickedId({ ...filterId });
-  };
+  }, [beerList]);
   useEffect(() => {
     createAbvFilterGroup();
   }, [beerList]);
@@ -105,7 +108,7 @@ const BeerTable = () => {
         actions={[
           (data) => ({
             icon: () => <ShoppingCartOutlined />,
-            tooltip: cartItemIds.includes(data.id)
+            tooltip: checkBeerItemInCart(data.id)
               ? "You alread add"
               : "Add your cart",
             onClick: (event, data) => {
@@ -117,7 +120,7 @@ const BeerTable = () => {
               );
               // Do save operation
             },
-            disabled: cartItemIds.includes(data.id),
+            disabled: checkBeerItemInCart(data.id),
           }),
         ]}
       />
