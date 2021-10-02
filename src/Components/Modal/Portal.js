@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-// import { createPortal } from "react-dom";
 import ReactDOM from "react-dom";
+
 const modalRoot = document.querySelector("#modal-root");
 
 const Portal = ({ children, closeModal }) => {
@@ -37,4 +37,5 @@ const Dim = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
 `;

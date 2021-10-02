@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
+import { ShadowBottomLine } from "styles/Mixin";
 
 const Header = () => {
   return (
@@ -27,10 +28,9 @@ const Container = styled.header`
   height: 60px;
   background-color: white;
   padding: 0px 30px;
-  z-index: 9999;
-  border-bottom: 1px solid rgb(243, 245, 248);
-  -webkit-box-shadow: 0px 6px 10px -4px #c2c2c2;
-  box-shadow: 0px 6px 10px -4px #c2c2c2;
+  z-index: 1;
+  ${ShadowBottomLine}
+
   & a.active,
   & a:hover {
     color: ${({ theme }) => theme.colors.primaryDark};
