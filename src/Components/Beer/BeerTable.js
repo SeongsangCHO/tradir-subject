@@ -11,6 +11,7 @@ import { ShoppingCartOutlined } from "@material-ui/icons";
 import { requestAddCartItem } from "Modules/actions/cart";
 import BeerFilter from "./BeerFilter";
 import { setBeerListFilter } from "Modules/actions/beer";
+import { ABV_STANDARD } from "Utils/constant";
 
 const BEER_TABLE_OPTIONS = {
   tableLayout: "fixed",
@@ -68,7 +69,7 @@ const BeerTable = () => {
     const abvGroup = {};
     const filterId = {};
     sortAbvOrder(beerList).forEach((beer) => {
-      const abvStandard = Math.floor(beer.abv / 5);
+      const abvStandard = Math.floor(beer.abv / ABV_STANDARD);
       if (!abvGroup.hasOwnProperty(abvStandard)) {
         abvGroup[abvStandard] = [];
         filterId[abvStandard] = false;

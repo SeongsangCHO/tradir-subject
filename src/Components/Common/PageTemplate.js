@@ -15,5 +15,5 @@ const Template = styled.main`
   width: 100%;
   max-width: 1220px;
   margin: 0 auto;
-  padding: 50px 30px;
+  padding: 70px 30px;
 `;
