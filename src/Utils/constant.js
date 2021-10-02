@@ -10,3 +10,4 @@ export const STATUS = {
   failure: "failure",
 };
 
+export const ABV_STANDARD = 5;
