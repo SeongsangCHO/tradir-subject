@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Portal from "./Portal";
-import styled from "styled-components";
-import BeerImage from "Components/Beer/BeerImage";
 import { CloseOutlined } from "@material-ui/icons";
+import styled from "styled-components";
+
+import Portal from "Components/Modal/Portal";
+import { BeerImage } from "Components/Beer";
 import { BorderBottom } from "styles/Mixin";
 
 const BeerDetailModal = ({ closeModal, item }) => {
@@ -15,14 +16,14 @@ const BeerDetailModal = ({ closeModal, item }) => {
         <DescriptionWrapper>
           <DescriptionText>{item.description}</DescriptionText>
         </DescriptionWrapper>
-        <FoodPairingListWrapper>
+        <FoodPairingListContainer>
           <span>With this foods</span>
           <ul>
-            {item.food_pairing.map((food, idx) => (
-              <li key={idx}>{food}</li>
+            {item.food_pairing.map((food) => (
+              <li key={item.id}>{food}</li>
             ))}
           </ul>
-        </FoodPairingListWrapper>
+        </FoodPairingListContainer>
         <CloseButton onClick={closeModal}>
           <CloseOutlined />
         </CloseButton>
@@ -37,7 +38,7 @@ BeerDetailModal.propTypes = {
 };
 
 export default BeerDetailModal;
-const FoodPairingListWrapper = styled.div`
+const FoodPairingListContainer = styled.div`
   margin-top: 10px;
   & > span {
     position: relative;
@@ -52,7 +53,7 @@ const FoodPairingListWrapper = styled.div`
 const DescriptionWrapper = styled.div`
   max-height: 150px;
   @media screen and (max-width: 768px) {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 100px;
   }
 `;

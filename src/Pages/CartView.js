@@ -1,31 +1,32 @@
 import React from "react";
-import PropTypes from "prop-types";
-import CartList from "Components/Cart/CartList";
-import PageTemplate from "Components/Common/PageTemplate";
-import CartTitle from "Components/Cart/CartTitle";
 import { useSelector } from "react-redux";
-import CartPriceTotal from "Components/Cart/CartPriceTotal";
 import styled from "styled-components";
 
-const CartView = (props) => {
+import { PageTemplate } from "Components/Common";
+import { CartTitle, CartList, CartPriceTotal } from "Components/Cart";
+
+const CartView = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
 
   return (
     <CartViewPageTemplate>
       <CartTitle />
-      <section>
+      <CartListSection>
         <CartList cartItems={cartItems} />
-        <CartPriceTotal cartItems={cartItems} />
-      </section>
+      </CartListSection>
+      <CartPriceTotal cartItems={cartItems} />
     </CartViewPageTemplate>
   );
 };
-
-CartView.propTypes = {};
 
 export default CartView;
 
 const CartViewPageTemplate = styled(PageTemplate)`
   max-width: 480px;
   margin: 0 auto;
+`;
+
+const CartListSection = styled.section`
+  max-height: 720px;
+  overflow-y: auto;
 `;

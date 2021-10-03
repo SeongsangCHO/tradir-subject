@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import LandingTop from "assets/landingtop.jpeg";
-import PageTemplate from "Components/Common/PageTemplate";
 import { Link } from "react-router-dom";
+
+import { PageTemplate, Footer } from "Components/Common";
 import { BorderBottom } from "styles/Mixin";
-import Footer from "Components/Common/Footer";
+import LandingTop from "assets/landingtop.jpeg";
 
 const Home = () => {
   return (
@@ -68,13 +68,12 @@ const IntroText = styled.h1`
 `;
 
 const ImageWrapper = styled.div`
-  /* max-height: 640px; */
   overflow: hidden;
 `;
 
 const LandingTopImage = styled.img`
-  max-height: 100%;
   object-fit: cover;
+  max-width: 1920px;
   filter: brightness(75%);
   opacity: 0.8;
 `;

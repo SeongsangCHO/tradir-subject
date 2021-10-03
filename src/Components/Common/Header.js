@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
+
+import { NotiCartItemCount } from "Components/Cart";
 import { ShadowBottomLine } from "styles/Mixin";
-import NotiCartItemCount from "Components/Cart/NotiCartItemCount";
 
 const Header = () => {
   return (

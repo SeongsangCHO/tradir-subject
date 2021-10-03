@@ -1,5 +1,3 @@
-import React from "react";
-import BeerImage from "Components/Beer/BeerImage";
 import { beerTableColumnOrderChange } from "Utils/beerTableColumnOrderChange";
 
 const columns = [0, 1, 2, 3, 4, 5];

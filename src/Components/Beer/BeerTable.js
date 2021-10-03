@@ -1,17 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import MaterialTable, { MTableToolbar } from "material-table";
 import styled from "styled-components";
-import { tableIcons } from "Utils/tableIcons";
-import { useSelector } from "react-redux";
-import { beerTableColumnOrderChange } from "Utils/beerTableColumnOrderChange";
-import { useDispatch } from "react-redux";
-import { setBeerTableColumnHeader } from "Modules/actions/beerTable";
+import { useSelector, useDispatch } from "react-redux";
+import MaterialTable, { MTableToolbar } from "material-table";
 import { ShoppingCartOutlined } from "@material-ui/icons";
+
+import { BeerFilter } from "Components/Beer";
+import { setBeerTableColumnHeader } from "Modules/actions/beerTable";
 import { requestAddCartItem } from "Modules/actions/cart";
-import BeerFilter from "./BeerFilter";
 import { setBeerListFilter } from "Modules/actions/beer";
+import { beerTableColumnOrderChange } from "Utils/beerTableColumnOrderChange";
 import { ABV_STANDARD } from "Utils/constant";
+import { tableIcons } from "Utils/tableIcons";
 
 const BEER_TABLE_OPTIONS = {
   tableLayout: "fixed",
@@ -39,19 +38,25 @@ const BeerTable = () => {
     (id) => cartItems.map((item) => item.id).includes(id),
     [cartItems.length]
   );
-  const handleDragged = (sourceIndex, destinationIndex) => {
-    const changedColumns = beerTableColumnOrderChange(
-      sourceIndex,
-      destinationIndex,
-      columnHeader
-    );
-    dispatch(setBeerTableColumnHeader(changedColumns));
-  };
-  const handleFilter = (standard) => {
+
+  const handleDragged = useCallback(
+    (sourceIndex, destinationIndex) => {
+      const changedColumns = beerTableColumnOrderChange(
+        sourceIndex,
+        destinationIndex,
+        columnHeader
+      );
+      dispatch(setBeerTableColumnHeader(changedColumns));
+    },
+    [columnHeader]
+  );
+
+  const handleFilterClick = (standard) => {
     setFilterClickedId((prev) => ({
       ...prev,
       [standard]: !filterClickedId[standard],
     }));
+
     const tmp = { ...filterClickedId, [standard]: !filterClickedId[standard] };
     const clickedFilter = Object.keys(tmp).filter((id) => tmp[id] === true);
     if (clickedFilter.length === 0) {
@@ -61,9 +66,11 @@ const BeerTable = () => {
       dispatch(setBeerListFilter(printData));
     }
   };
+
   const sortAbvOrder = (list) => {
     return list.sort((a, b) => a.abv - b.abv);
   };
+
   const createAbvFilterGroup = useCallback(() => {
     const abvGroup = {};
     const filterId = {};
@@ -78,6 +85,10 @@ const BeerTable = () => {
     setAbvFilterGroup({ ...abvGroup });
     setFilterClickedId({ ...filterId });
   }, [beerList]);
+
+  const beerPriceGenerator = () => {
+    return Math.ceil((Math.random() * 5000 + 5000) / 100) * 100;
+  };
   useEffect(() => {
     createAbvFilterGroup();
   }, [beerList]);
@@ -89,7 +100,7 @@ const BeerTable = () => {
         onColumnDragged={handleDragged}
         columns={columnHeader}
         data={filteredBeerList}
-        title="Beer List"
+        title="🍺 Beer List"
         options={BEER_TABLE_OPTIONS}
         components={{
           Toolbar: (props) => (
@@ -99,7 +110,8 @@ const BeerTable = () => {
                 beerList={beerList}
                 abvFilterGroup={abvFilterGroup}
                 filterClickedId={filterClickedId}
-                handleFilter={handleFilter}
+                handleFilterClick={handleFilterClick}
+                itemsCount={filteredBeerList.length}
               />
             </div>
           ),
@@ -114,7 +126,7 @@ const BeerTable = () => {
               dispatch(
                 requestAddCartItem({
                   ...data,
-                  price: Math.ceil((Math.random() * 5000 + 5000) / 100) * 100,
+                  price: beerPriceGenerator(),
                 })
               );
             },
@@ -133,5 +145,8 @@ export default React.memo(BeerTable);
 const Wrapper = styled.section`
   & td > div {
     justify-content: center;
+  }
+  & > h6 {
+    font-size: 2em;
   }
 `;

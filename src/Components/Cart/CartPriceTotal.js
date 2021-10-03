@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const CartPriceTotal = ({ cartItems }) => {
-  const calcTotalPrice = () => {
-    return cartItems.reduce((acc, curr) => acc + curr.price, 0);
-  };
+  const calcTotalPrice = useMemo(
+    () => cartItems.reduce((acc, curr) => acc + curr.price, 0),
+    [cartItems]
+  );
   return (
     <Wrapper>
-      <span>Total {calcTotalPrice(cartItems).toLocaleString()} Won</span>
+      <span>Total {calcTotalPrice.toLocaleString()} Won</span>
     </Wrapper>
   );
 };

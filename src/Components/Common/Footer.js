@@ -1,6 +1,7 @@
-import { GitHub } from "@material-ui/icons";
 import React from "react";
+import { GitHub } from "@material-ui/icons";
 import styled from "styled-components";
+
 const Footer = () => {
   return (
     <Container>
@@ -22,6 +23,6 @@ const Container = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding: 24px;
   gap: 10px;
 `;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL, END_POINT } from "./constant";
+import { BASE_URL, END_POINT } from "Utils/constant";
 
 const BEER_API = axios.create({
   baseURL: BASE_URL,

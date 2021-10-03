@@ -1,9 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import Home from "Pages/Home";
-import Header from "Components/Common/Header";
-import BeerList from "Pages/BeerList";
-import CartView from "Pages/CartView";
+import { Home, BeerList, CartView, Page404 } from "Pages";
+import { Header } from "Components/Common";
 // import ReactGA from "react-ga";
 
 const Routes = () => {
@@ -17,6 +15,7 @@ const Routes = () => {
         <Route exact path="/home" component={Home} />
         <Route exact path="/beerlist" component={BeerList} />
         <Route exact path="/cartview" component={CartView} />
+        <Route component={Page404} />
       </Switch>
     </Router>
   );

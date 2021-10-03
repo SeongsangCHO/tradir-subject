@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
 import useModal from "Utils/hooks/useModal";
 import BeerDetailModal from "Components/Modal/BeerDetailModal";
 
@@ -30,15 +31,5 @@ const Container = styled.button`
   color: white;
   &:hover {
     background-color: ${({ theme }) => theme.colors.primary};
-  }
-`;
-const Text = styled.span`
-  position: relative;
-  font-size: 1em;
-  color: white;
-  font-weight: bold;
-  @media screen and (max-width: 768px) {
-    white-space: nowrap;
-    max-width: 40px;
   }
 `;
