@@ -107,6 +107,7 @@ const BeerTable = () => {
                 abvFilterGroup={abvFilterGroup}
                 filterClickedId={filterClickedId}
                 handleFilter={handleFilter}
+                itemsCount={filteredBeerList.length}
               />
             </div>
           ),

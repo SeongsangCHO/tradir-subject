@@ -8,7 +8,7 @@ const modalRoot = document.querySelector("#modal-root");
 const Portal = ({ children, closeModal }) => {
   const close = (e) => {
     const { kind } = e.target.dataset;
-    if (kind === "dim") {
+    if (kind === "dim" && closeModal) {
       closeModal();
     }
   };

@@ -6,7 +6,12 @@ import { useDispatch } from "react-redux";
 import { requestGetBeerList } from "Modules/actions/beer";
 import { ABV_STANDARD } from "Utils/constant";
 
-const BeerFilter = ({ abvFilterGroup, filterClickedId, handleFilter }) => {
+const BeerFilter = ({
+  abvFilterGroup,
+  filterClickedId,
+  handleFilter,
+  itemsCount,
+}) => {
   const dispatch = useDispatch();
   const filterButtonText = (standard, idx) => {
     if (idx === 0) {
@@ -20,9 +25,11 @@ const BeerFilter = ({ abvFilterGroup, filterClickedId, handleFilter }) => {
   const getBeerListData = () => {
     dispatch(requestGetBeerList());
   };
+  console.log(abvFilterGroup);
+
   return (
     <Container>
-      <div>ABV Filter</div>
+      <div>ABV Filter Result: {itemsCount} items</div>
       <FilterButton onClick={getBeerListData} isClicked={isActiveAllFilter()}>
         All
       </FilterButton>
@@ -43,6 +50,7 @@ BeerFilter.propTypes = {
   abvFilterGroup: PropTypes.object,
   filterClickedId: PropTypes.object,
   handleFilter: PropTypes.func,
+  itemsCount: PropTypes.string,
 };
 
 export default BeerFilter;
