@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { PageTemplate, Footer } from "Components/Common";
 import { BorderBottom } from "styles/Mixin";
-import LandingTop from "assets/landingtop.jpeg";
+import LandingTop from "assets/landingtop.jpg";
 
 const Home = () => {
   return (
@@ -53,11 +53,11 @@ const IntroContainer = styled.div`
   @keyframes fade {
     from {
       opacity: 0;
-      margin-top: 50px;
+      transform: translate(-50%, calc(-50% + 50px));
     }
     to {
       opacity: 1;
-      margin-top: 0px;
+      transform: translate(-50%, -50%);
     }
   }
 `;
@@ -73,7 +73,9 @@ const ImageWrapper = styled.div`
 
 const LandingTopImage = styled.img`
   object-fit: cover;
+  width: 1920px;
   max-width: 1920px;
+  height: 100vh;
   filter: brightness(75%);
   opacity: 0.8;
 `;
