@@ -23,10 +23,14 @@ export default CartView;
 
 const CartViewPageTemplate = styled(PageTemplate)`
   max-width: 480px;
+  max-height: 100vh;
   margin: 0 auto;
 `;
 
 const CartListSection = styled.section`
   max-height: 720px;
   overflow-y: auto;
+  @media screen and (max-width: 768px) {
+    max-height: 480px;
+  }
 `;

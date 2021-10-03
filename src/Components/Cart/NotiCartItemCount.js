@@ -16,15 +16,16 @@ export default NotiCartItemCount;
 const CircleWrapper = styled.div`
   padding: 2px;
   position: absolute;
-  top: -0.8em;
-  right: -1.1em;
-  width: 20px;
-  height: 20px;
+  font-size: 14px;
+  top: -1em;
+  right: -1.5em;
+  width: 22px;
+  height: 22px;
   border-radius: 100%;
   background-color: red;
   color: white;
   text-align: center;
   & > span {
-    line-height: 20px;
+    line-height: 18px;
   }
 `;
