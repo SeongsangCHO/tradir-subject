@@ -4,7 +4,7 @@ import { CloseOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 
 import Portal from "Components/Modal/Portal";
-import BeerImage from "Components/Beer/BeerImage";
+import { BeerImage } from "Components/Beer";
 import { BorderBottom } from "styles/Mixin";
 
 const BeerDetailModal = ({ closeModal, item }) => {
@@ -19,8 +19,8 @@ const BeerDetailModal = ({ closeModal, item }) => {
         <FoodPairingListWrapper>
           <span>With this foods</span>
           <ul>
-            {item.food_pairing.map((food, idx) => (
-              <li key={idx}>{food}</li>
+            {item.food_pairing.map((food) => (
+              <li key={item.id}>{food}</li>
             ))}
           </ul>
         </FoodPairingListWrapper>

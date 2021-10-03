@@ -1,7 +1,7 @@
 import React from "react";
 import { BEER_TABLE_COLUMN_HEADER_ACTION_TYPES as T } from "Modules/actions/types";
-import BeerImage from "Components/Beer/BeerImage";
-import BeerName from "Components/Beer/BeerName";
+
+import { BeerImage, BeerName } from "Components/Beer";
 
 const initState = {
   columnHeader: [

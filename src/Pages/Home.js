@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import PageTemplate from "Components/Common/PageTemplate";
-import Footer from "Components/Common/Footer";
+import { PageTemplate, Footer } from "Components/Common";
 import { BorderBottom } from "styles/Mixin";
 import LandingTop from "assets/landingtop.jpeg";
 

@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { requestGetBeerList } from "Modules/actions/beer";
-import BeerTable from "Components/Beer/BeerTable";
-import PageTemplate from "Components/Common/PageTemplate";
+import { BeerTable } from "Components/Beer";
+import Portal from "Components/Modal/Portal";
+import { PageTemplate, Spinner } from "Components/Common";
 
 const BeerList = () => {
   const dispatch = useDispatch();
-
+  const { status } = useSelector((state) => state.beerReducer);
   useEffect(() => {
     dispatch(requestGetBeerList());
   }, []);
@@ -15,6 +16,11 @@ const BeerList = () => {
     <PageTemplate>
       Beerlist
       <BeerTable />
+      {status === "loading" && (
+        <Portal>
+          <Spinner />
+        </Portal>
+      )}
     </PageTemplate>
   );
 };

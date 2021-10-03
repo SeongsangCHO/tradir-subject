@@ -2,10 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import PageTemplate from "Components/Common/PageTemplate";
-import CartTitle from "Components/Cart/CartTitle";
-import CartList from "Components/Cart/CartList";
-import CartPriceTotal from "Components/Cart/CartPriceTotal";
+import { PageTemplate } from "Components/Common";
+import { CartTitle, CartList, CartPriceTotal } from "Components/Cart";
 
 const CartView = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);

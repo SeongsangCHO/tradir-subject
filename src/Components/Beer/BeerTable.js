@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import MaterialTable, { MTableToolbar } from "material-table";
 import { ShoppingCartOutlined } from "@material-ui/icons";
 
-import BeerFilter from "Components/Beer/BeerFilter";
+import { BeerFilter } from "Components/Beer";
 import { setBeerTableColumnHeader } from "Modules/actions/beerTable";
 import { requestAddCartItem } from "Modules/actions/cart";
 import { setBeerListFilter } from "Modules/actions/beer";
@@ -38,6 +38,7 @@ const BeerTable = () => {
     (id) => cartItems.map((item) => item.id).includes(id),
     [cartItems.length]
   );
+
   const handleDragged = (sourceIndex, destinationIndex) => {
     const changedColumns = beerTableColumnOrderChange(
       sourceIndex,
@@ -46,6 +47,7 @@ const BeerTable = () => {
     );
     dispatch(setBeerTableColumnHeader(changedColumns));
   };
+
   const handleFilter = (standard) => {
     setFilterClickedId((prev) => ({
       ...prev,
@@ -60,9 +62,11 @@ const BeerTable = () => {
       dispatch(setBeerListFilter(printData));
     }
   };
+
   const sortAbvOrder = (list) => {
     return list.sort((a, b) => a.abv - b.abv);
   };
+
   const createAbvFilterGroup = useCallback(() => {
     const abvGroup = {};
     const filterId = {};
@@ -77,6 +81,10 @@ const BeerTable = () => {
     setAbvFilterGroup({ ...abvGroup });
     setFilterClickedId({ ...filterId });
   }, [beerList]);
+
+  const beerPriceGenerator = () => {
+    return Math.ceil((Math.random() * 5000 + 5000) / 100) * 100;
+  };
   useEffect(() => {
     createAbvFilterGroup();
   }, [beerList]);
@@ -113,7 +121,7 @@ const BeerTable = () => {
               dispatch(
                 requestAddCartItem({
                   ...data,
-                  price: Math.ceil((Math.random() * 5000 + 5000) / 100) * 100,
+                  price: beerPriceGenerator(),
                 })
               );
             },

@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { DeleteOutlined } from "@material-ui/icons";
 
-import BeerName from "Components/Beer/BeerName";
-import BeerImage from "Components/Beer/BeerImage";
+import { BeerName, BeerImage } from "Components/Beer";
 import { requestDeleteCartItem } from "Modules/actions/cart";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
+
+  const handleDeleteButtonClick = useCallback(() => {
+    dispatch(requestDeleteCartItem(item.id));
+  }, [item.id]);
   return (
     <Item key={item.id}>
-      <DeleteButton onClick={() => dispatch(requestDeleteCartItem(item.id))}>
+      <DeleteButton onClick={handleDeleteButtonClick}>
         <DeleteOutlined alt="cart item delete button" />
       </DeleteButton>
       <CartImageWrapper>
@@ -30,7 +33,7 @@ CartItem.propTypes = {
   item: PropTypes.object,
 };
 
-export default CartItem;
+export default React.memo(CartItem);
 
 const Item = styled.li`
   display: flex;

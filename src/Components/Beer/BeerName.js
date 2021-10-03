@@ -33,13 +33,3 @@ const Container = styled.button`
     background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
-const Text = styled.span`
-  position: relative;
-  font-size: 1em;
-  color: white;
-  font-weight: bold;
-  @media screen and (max-width: 768px) {
-    white-space: nowrap;
-    max-width: 40px;
-  }
-`;

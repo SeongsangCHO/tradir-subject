@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import CartItem from "Components/Cart/CartItem";
+import { CartItem } from "Components/Cart";
 
 const CartList = ({ cartItems }) => {
   return (
@@ -24,7 +24,7 @@ CartList.propTypes = {
   cartItems: PropTypes.array,
 };
 
-export default CartList;
+export default React.memo(CartList);
 
 const List = styled.ul`
   display: flex;
