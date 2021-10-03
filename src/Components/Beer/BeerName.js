@@ -8,9 +8,7 @@ const BeerName = ({ item }) => {
   const { isShow, showModal, closeModal } = useModal();
   return (
     <>
-      <Container onClick={showModal}>
-        <Text>{item.name}</Text>
-      </Container>
+      <Container onClick={showModal}>{item.name}</Container>
       {isShow && <BeerDetailModal item={item} closeModal={closeModal} />}
     </>
   );
@@ -21,14 +19,18 @@ BeerName.propTypes = {
 };
 
 export default BeerName;
-const Container = styled.div`
+const Container = styled.button`
   padding: 5px;
-  background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 8px;
   text-align: center;
   text-overflow: ellipsis;
   cursor: pointer;
   overflow: hidden;
+  background-color: ${({ theme }) => theme.colors.primaryDark};
+  color: white;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary};
+  }
 `;
 const Text = styled.span`
   position: relative;

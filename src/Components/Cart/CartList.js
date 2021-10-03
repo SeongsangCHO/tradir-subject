@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import CartItem from "./CartItem";
+import CartItem from "Components/Cart/CartItem";
 import { Link } from "react-router-dom";
 
 const CartList = ({ cartItems }) => {
@@ -33,14 +33,17 @@ const List = styled.ul`
   }
 `;
 
-const EmptyCartNotification = styled.h1`
+const EmptyCartNotification = styled.div`
   font-size: 1.5em;
   transition: 0.2s;
-  padding: 10px 10px;
+  padding: 10px 0px;
   font-weight: bold;
-
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primaryDark};
+  text-align: center;
   &:hover {
     font-size: 2em;
+  }
+  & > a {
+    color: white;
   }
 `;
