@@ -23,6 +23,6 @@ const Container = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding: 24px;
   gap: 10px;
 `;

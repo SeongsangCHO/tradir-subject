@@ -68,7 +68,6 @@ const IntroText = styled.h1`
 `;
 
 const ImageWrapper = styled.div`
-  /* max-height: 640px; */
   overflow: hidden;
 `;
 

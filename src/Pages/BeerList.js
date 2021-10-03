@@ -14,7 +14,6 @@ const BeerList = () => {
   }, []);
   return (
     <PageTemplate>
-      Beerlist
       <BeerTable />
       {status === "loading" && (
         <Portal>
