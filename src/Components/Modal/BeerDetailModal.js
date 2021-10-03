@@ -4,6 +4,7 @@ import Portal from "./Portal";
 import styled from "styled-components";
 import BeerImage from "Components/Beer/BeerImage";
 import { CloseOutlined } from "@material-ui/icons";
+import { BorderBottom } from "styles/Mixin";
 
 const BeerDetailModal = ({ closeModal, item }) => {
   return (
@@ -42,16 +43,7 @@ const FoodPairingListWrapper = styled.div`
     position: relative;
     font-size: 1.5em;
     font-weight: bold;
-    &::after {
-      position: absolute;
-      left: 0;
-      bottom: 3px;
-      content: "";
-      width: 100%;
-      height: 5px;
-      opacity: 0.5;
-      background-color: ${({ theme }) => theme.colors.primaryDark};
-    }
+    ${BorderBottom("5px", "primaryDark")}
   }
   & > ul {
     margin-top: 10px;
@@ -71,16 +63,7 @@ const TitleText = styled.span`
   font-size: 2em;
   font-weight: bold;
   position: relative;
-  &::after {
-    position: absolute;
-    left: 0;
-    bottom: 3px;
-    content: "";
-    width: 100%;
-    height: 5px;
-    opacity: 0.5;
-    background-color: ${({ theme }) => theme.colors.primaryDark};
-  }
+  ${BorderBottom("5px", "primaryDark")}
 `;
 const ModalBeerImage = styled(BeerImage)`
   align-self: center;
