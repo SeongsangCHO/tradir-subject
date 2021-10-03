@@ -108,7 +108,7 @@ const BeerTable = () => {
           (data) => ({
             icon: () => <ShoppingCartOutlined />,
             tooltip: checkBeerItemInCart(data.id)
-              ? "You alread add"
+              ? "You have already added"
               : "Add your cart",
             onClick: (_, data) => {
               dispatch(

@@ -5,15 +5,13 @@ import { useDispatch } from "react-redux";
 import { requestGetBeerList } from "Modules/actions/beer";
 import { ABV_STANDARD } from "Utils/constant";
 
-//N으로 나누는 값 상수처리
-
 const BeerFilter = ({ abvFilterGroup, filterClickedId, handleFilter }) => {
   const dispatch = useDispatch();
   const filterButtonText = (standard, idx) => {
     if (idx === 0) {
-      return `${(standard + 1) * ABV_STANDARD}미만`;
+      return `${(standard + 1) * ABV_STANDARD}%미만`;
     }
-    return `${standard * ABV_STANDARD}이상, ${(standard + 1) * ABV_STANDARD}미만`;
+    return `${standard * ABV_STANDARD}%이상, ${(standard + 1) * ABV_STANDARD}%미만`;
   };
   const isActiveAllFilter = () => {
     return Object.values(filterClickedId).every((isClicked) => isClicked === false);
@@ -23,6 +21,7 @@ const BeerFilter = ({ abvFilterGroup, filterClickedId, handleFilter }) => {
   };
   return (
     <Container>
+      <div>ABV Filter</div>
       <FilterButton onClick={getBeerListData} isClicked={isActiveAllFilter()}>
         All
       </FilterButton>
@@ -48,7 +47,7 @@ BeerFilter.propTypes = {
 export default BeerFilter;
 
 const Container = styled.div`
-  padding: 8px 0px;
+  padding: 8px 24px;
   & button + button {
     margin-left: 8px;
   }

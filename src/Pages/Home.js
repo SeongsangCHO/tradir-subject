@@ -4,6 +4,7 @@ import LandingTop from "assets/landingtop.jpeg";
 import PageTemplate from "Components/Common/PageTemplate";
 import { Link } from "react-router-dom";
 import { BorderBottom } from "styles/Mixin";
+import Footer from "Components/Common/Footer";
 
 const Home = () => {
   return (
@@ -17,7 +18,7 @@ const Home = () => {
           <Link to="/beerlist">👉 Beer List </Link>
         </IntroContainer>
       </TopContainer>
-      <footer>footer</footer>
+      <Footer />
     </HomePageTemplate>
   );
 };
@@ -26,7 +27,7 @@ export default Home;
 const TopContainer = styled.section`
   display: flex;
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 76px);
 `;
 const IntroContainer = styled.div`
   display: flex;
