@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import { requestGetBeerList } from "Modules/actions/beer";
 import BeerTable from "Components/Beer/BeerTable";
 import PageTemplate from "Components/Common/PageTemplate";

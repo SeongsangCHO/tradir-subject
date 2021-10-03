@@ -1,17 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import MaterialTable, { MTableToolbar } from "material-table";
 import styled from "styled-components";
-import { tableIcons } from "Utils/tableIcons";
-import { useSelector } from "react-redux";
-import { beerTableColumnOrderChange } from "Utils/beerTableColumnOrderChange";
-import { useDispatch } from "react-redux";
-import { setBeerTableColumnHeader } from "Modules/actions/beerTable";
+import { useSelector, useDispatch } from "react-redux";
+import MaterialTable, { MTableToolbar } from "material-table";
 import { ShoppingCartOutlined } from "@material-ui/icons";
+
+import BeerFilter from "Components/Beer/BeerFilter";
+import { setBeerTableColumnHeader } from "Modules/actions/beerTable";
 import { requestAddCartItem } from "Modules/actions/cart";
-import BeerFilter from "./BeerFilter";
 import { setBeerListFilter } from "Modules/actions/beer";
+import { beerTableColumnOrderChange } from "Utils/beerTableColumnOrderChange";
 import { ABV_STANDARD } from "Utils/constant";
+import { tableIcons } from "Utils/tableIcons";
 
 const BEER_TABLE_OPTIONS = {
   tableLayout: "fixed",

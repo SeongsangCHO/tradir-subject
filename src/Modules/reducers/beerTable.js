@@ -1,6 +1,5 @@
 import React from "react";
 import { BEER_TABLE_COLUMN_HEADER_ACTION_TYPES as T } from "Modules/actions/types";
-import { STATUS } from "Utils/constant";
 import BeerImage from "Components/Beer/BeerImage";
 import BeerName from "Components/Beer/BeerName";
 

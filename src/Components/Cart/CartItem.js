@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { DeleteOutlined } from "@material-ui/icons";
+
 import BeerName from "Components/Beer/BeerName";
 import BeerImage from "Components/Beer/BeerImage";
-import styled from "styled-components";
-import { DeleteOutlined } from "@material-ui/icons";
-import { useDispatch } from "react-redux";
 import { requestDeleteCartItem } from "Modules/actions/cart";
 
 const CartItem = ({ item }) => {

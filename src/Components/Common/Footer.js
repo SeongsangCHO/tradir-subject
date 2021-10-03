@@ -1,6 +1,7 @@
-import { GitHub } from "@material-ui/icons";
 import React from "react";
+import { GitHub } from "@material-ui/icons";
 import styled from "styled-components";
+
 const Footer = () => {
   return (
     <Container>

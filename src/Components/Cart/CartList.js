@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import CartItem from "Components/Cart/CartItem";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+import CartItem from "Components/Cart/CartItem";
 
 const CartList = ({ cartItems }) => {
   return (

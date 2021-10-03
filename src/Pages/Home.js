@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import LandingTop from "assets/landingtop.jpeg";
-import PageTemplate from "Components/Common/PageTemplate";
 import { Link } from "react-router-dom";
-import { BorderBottom } from "styles/Mixin";
+
+import PageTemplate from "Components/Common/PageTemplate";
 import Footer from "Components/Common/Footer";
+import { BorderBottom } from "styles/Mixin";
+import LandingTop from "assets/landingtop.jpeg";
 
 const Home = () => {
   return (

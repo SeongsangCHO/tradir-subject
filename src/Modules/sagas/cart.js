@@ -13,7 +13,7 @@ function* watchAddCartItem(action) {
   try {
     yield put(successAddCartItem(payload));
   } catch (error) {
-    yield put(failureGetBeerList());
+    yield put(failureAddCartItem());
     console.error(error);
   }
 }

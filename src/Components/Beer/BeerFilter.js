@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+
 import { requestGetBeerList } from "Modules/actions/beer";
 import { ABV_STANDARD } from "Utils/constant";
 

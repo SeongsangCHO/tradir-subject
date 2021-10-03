@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Portal from "./Portal";
-import styled from "styled-components";
-import BeerImage from "Components/Beer/BeerImage";
 import { CloseOutlined } from "@material-ui/icons";
+import styled from "styled-components";
+
+import Portal from "Components/Modal/Portal";
+import BeerImage from "Components/Beer/BeerImage";
 import { BorderBottom } from "styles/Mixin";
 
 const BeerDetailModal = ({ closeModal, item }) => {

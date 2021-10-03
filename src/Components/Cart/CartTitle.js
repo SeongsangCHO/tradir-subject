@@ -1,16 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const CartTitle = (props) => {
+const CartTitle = () => {
   return (
     <Title>
       <h1>Cart</h1>
     </Title>
   );
 };
-
-CartTitle.propTypes = {};
 
 export default CartTitle;
 
