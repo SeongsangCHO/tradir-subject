@@ -5,6 +5,7 @@ import { requestGetBeerList } from "Modules/actions/beer";
 import { BeerTable } from "Components/Beer";
 import Portal from "Components/Modal/Portal";
 import { PageTemplate, Spinner } from "Components/Common";
+import ErrorModal from "Components/Modal/ErrorModal";
 
 const BeerList = () => {
   const dispatch = useDispatch();
@@ -12,14 +13,22 @@ const BeerList = () => {
   useEffect(() => {
     dispatch(requestGetBeerList());
   }, []);
-  return (
-    <PageTemplate>
-      <BeerTable />
-      {status === "loading" && (
+
+  const conditionRenderAboutStatus = () => {
+    if (status === "loading") {
+      return (
         <Portal>
           <Spinner />
         </Portal>
-      )}
+      );
+    } else if (status === "failure") {
+      return <ErrorModal />;
+    }
+  };
+  return (
+    <PageTemplate>
+      <BeerTable />
+      {conditionRenderAboutStatus()}
     </PageTemplate>
   );
 };
