@@ -18,12 +18,11 @@ const BEER_TABLE_OPTIONS = {
   sorting: false,
   cellStyle: {
     textAlign: "center",
-    wordWrap: "break-word",
   },
   headerStyle: {
     position: "unset",
     textAlign: "center",
-    backgroundColor: "#01579b",
+    backgroundColor: "#3dc28a",
     color: "#FFF",
   },
 };
