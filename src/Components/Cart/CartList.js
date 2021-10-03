@@ -10,7 +10,7 @@ const CartList = ({ cartItems }) => {
     <List>
       {cartItems.length === 0 && (
         <EmptyCartNotification>
-          <Link to="/beerlist">Let&apos;s get beers 👉</Link>
+          <Link to="/beerlist">👉 Let&apos;s get beers</Link>
         </EmptyCartNotification>
       )}
       {cartItems.map((item) => (

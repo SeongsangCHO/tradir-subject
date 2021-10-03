@@ -53,7 +53,7 @@ const FoodPairingListWrapper = styled.div`
 const DescriptionWrapper = styled.div`
   max-height: 150px;
   @media screen and (max-width: 768px) {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 100px;
   }
 `;

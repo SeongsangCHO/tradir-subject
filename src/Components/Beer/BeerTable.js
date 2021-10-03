@@ -96,7 +96,7 @@ const BeerTable = () => {
         onColumnDragged={handleDragged}
         columns={columnHeader}
         data={filteredBeerList}
-        title="Beer List"
+        title="🍺 Beer List"
         options={BEER_TABLE_OPTIONS}
         components={{
           Toolbar: (props) => (
@@ -141,5 +141,8 @@ export default React.memo(BeerTable);
 const Wrapper = styled.section`
   & td > div {
     justify-content: center;
+  }
+  & > h6 {
+    font-size: 2em;
   }
 `;

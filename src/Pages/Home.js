@@ -72,8 +72,8 @@ const ImageWrapper = styled.div`
 `;
 
 const LandingTopImage = styled.img`
-  max-height: 100%;
   object-fit: cover;
+  max-width: 1920px;
   filter: brightness(75%);
   opacity: 0.8;
 `;

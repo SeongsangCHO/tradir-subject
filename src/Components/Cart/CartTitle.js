@@ -1,10 +1,11 @@
+import { ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 
 const CartTitle = () => {
   return (
     <Title>
-      <h1>Cart</h1>
+      <h1>🛒 Cart</h1>
     </Title>
   );
 };

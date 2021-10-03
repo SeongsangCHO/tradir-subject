@@ -59,6 +59,7 @@ const Container = styled.div`
   padding: 8px 24px;
   & button + button {
     margin-left: 8px;
+    margin-bottom: 8px;
   }
 `;
 
