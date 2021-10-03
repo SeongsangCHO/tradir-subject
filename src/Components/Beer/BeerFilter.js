@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
@@ -9,34 +9,33 @@ import { ABV_STANDARD } from "Utils/constant";
 const BeerFilter = ({
   abvFilterGroup,
   filterClickedId,
-  handleFilter,
+  handleFilterClick,
   itemsCount,
 }) => {
   const dispatch = useDispatch();
-  const filterButtonText = (standard, idx) => {
+  const filterButtonText = useCallback((standard, idx) => {
     if (idx === 0) {
       return `${(standard + 1) * ABV_STANDARD}%미만`;
     }
     return `${standard * ABV_STANDARD}%이상, ${(standard + 1) * ABV_STANDARD}%미만`;
-  };
-  const isActiveAllFilter = () => {
+  });
+  const checkActiveAllFilter = () => {
     return Object.values(filterClickedId).every((isClicked) => isClicked === false);
   };
-  const getBeerListData = () => {
+  const getBeerListData = useCallback(() => {
     dispatch(requestGetBeerList());
-  };
-  console.log(abvFilterGroup);
+  });
 
   return (
     <Container>
       <div>ABV Filter Result: {itemsCount} items</div>
-      <FilterButton onClick={getBeerListData} isClicked={isActiveAllFilter()}>
+      <FilterButton onClick={getBeerListData} isClicked={checkActiveAllFilter()}>
         All
       </FilterButton>
       {Object.keys(abvFilterGroup).map((standard, idx) => (
         <FilterButton
           isClicked={filterClickedId[standard]}
-          onClick={() => handleFilter(parseInt(standard))}
+          onClick={() => handleFilterClick(parseInt(standard))}
           key={standard}
         >
           {filterButtonText(parseInt(standard), idx)}
@@ -49,11 +48,11 @@ const BeerFilter = ({
 BeerFilter.propTypes = {
   abvFilterGroup: PropTypes.object,
   filterClickedId: PropTypes.object,
-  handleFilter: PropTypes.func,
-  itemsCount: PropTypes.string,
+  handleFilterClick: PropTypes.func,
+  itemsCount: PropTypes.number,
 };
 
-export default BeerFilter;
+export default React.memo(BeerFilter);
 
 const Container = styled.div`
   padding: 8px 24px;

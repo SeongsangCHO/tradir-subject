@@ -8,7 +8,7 @@ function* watchGetBeerList() {
   const res = yield call(API.getBeerList);
   yield delay(500); //loading ui를 보여주기 위해 0.5s간 delay를 임시로 넣었습니다.
 
-  if (res.status === 200) {
+  if (res && res.status === 200) {
     yield put(successGetBeerList(res.data));
   } else {
     yield put(failureGetBeerList());

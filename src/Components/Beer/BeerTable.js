@@ -39,20 +39,24 @@ const BeerTable = () => {
     [cartItems.length]
   );
 
-  const handleDragged = (sourceIndex, destinationIndex) => {
-    const changedColumns = beerTableColumnOrderChange(
-      sourceIndex,
-      destinationIndex,
-      columnHeader
-    );
-    dispatch(setBeerTableColumnHeader(changedColumns));
-  };
+  const handleDragged = useCallback(
+    (sourceIndex, destinationIndex) => {
+      const changedColumns = beerTableColumnOrderChange(
+        sourceIndex,
+        destinationIndex,
+        columnHeader
+      );
+      dispatch(setBeerTableColumnHeader(changedColumns));
+    },
+    [columnHeader]
+  );
 
-  const handleFilter = (standard) => {
+  const handleFilterClick = (standard) => {
     setFilterClickedId((prev) => ({
       ...prev,
       [standard]: !filterClickedId[standard],
     }));
+
     const tmp = { ...filterClickedId, [standard]: !filterClickedId[standard] };
     const clickedFilter = Object.keys(tmp).filter((id) => tmp[id] === true);
     if (clickedFilter.length === 0) {
@@ -106,7 +110,7 @@ const BeerTable = () => {
                 beerList={beerList}
                 abvFilterGroup={abvFilterGroup}
                 filterClickedId={filterClickedId}
-                handleFilter={handleFilter}
+                handleFilterClick={handleFilterClick}
                 itemsCount={filteredBeerList.length}
               />
             </div>

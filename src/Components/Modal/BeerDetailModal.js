@@ -16,14 +16,14 @@ const BeerDetailModal = ({ closeModal, item }) => {
         <DescriptionWrapper>
           <DescriptionText>{item.description}</DescriptionText>
         </DescriptionWrapper>
-        <FoodPairingListWrapper>
+        <FoodPairingListContainer>
           <span>With this foods</span>
           <ul>
             {item.food_pairing.map((food) => (
               <li key={item.id}>{food}</li>
             ))}
           </ul>
-        </FoodPairingListWrapper>
+        </FoodPairingListContainer>
         <CloseButton onClick={closeModal}>
           <CloseOutlined />
         </CloseButton>
@@ -38,7 +38,7 @@ BeerDetailModal.propTypes = {
 };
 
 export default BeerDetailModal;
-const FoodPairingListWrapper = styled.div`
+const FoodPairingListContainer = styled.div`
   margin-top: 10px;
   & > span {
     position: relative;

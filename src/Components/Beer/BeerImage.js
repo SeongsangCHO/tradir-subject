@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const BeerImage = ({ src, name, ...restParams }) => {
-  return <Wrapper alt={name + " beer image"} src={src} {...restParams}></Wrapper>;
+  return <Image alt={name + " beer image"} src={src} {...restParams}></Image>;
 };
 
 BeerImage.propTypes = {
@@ -13,7 +13,7 @@ BeerImage.propTypes = {
 
 export default BeerImage;
 
-const Wrapper = styled.img`
+const Image = styled.img`
   max-width: 75px;
   max-height: 75px;
 `;
