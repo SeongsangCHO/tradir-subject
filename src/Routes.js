@@ -1,10 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import Home from "Pages/Home";
+import { Home, BeerList, CartView, Page404 } from "Pages";
 import { Header } from "Components/Common";
-import BeerList from "Pages/BeerList";
-import CartView from "Pages/CartView";
-import Page404 from "Pages/Page404";
 // import ReactGA from "react-ga";
 
 const Routes = () => {
