@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 import { ShadowBottomLine } from "styles/Mixin";
+import NotiCartItemCount from "Components/Cart/NotiCartItemCount";
 
 const Header = () => {
   return (
@@ -11,13 +12,20 @@ const Header = () => {
       </LogoWrapper>
       <MenuNav>
         <NavLink to="/beerlist">Beer List</NavLink>
-        <NavLink to="/cartview">My Cart</NavLink>
+        <CartLinkContainer>
+          <NavLink to="/cartview">My Cart</NavLink>
+          <NotiCartItemCount />
+        </CartLinkContainer>
       </MenuNav>
     </Container>
   );
 };
 
 export default Header;
+
+const CartLinkContainer = styled.div`
+  position: relative;
+`;
 
 const Container = styled.header`
   display: flex;
