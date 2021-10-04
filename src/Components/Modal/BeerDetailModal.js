@@ -24,7 +24,7 @@ const BeerDetailModal = ({ closeModal, item }) => {
             ))}
           </ul>
         </FoodPairingListContainer>
-        <CloseButton onClick={closeModal}>
+        <CloseButton aria-label="Close Button" onClick={closeModal}>
           <CloseOutlined />
         </CloseButton>
       </Container>

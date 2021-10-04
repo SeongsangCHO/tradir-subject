@@ -8,7 +8,7 @@ import rootReducer, { rootSaga } from "./Modules";
 import GlobalStyle from "styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import Theme from "styles/Theme";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,9 +16,12 @@ export const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(sagaMiddleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__
+      ? window.__REDUX_DEVTOOLS_EXTENSION__()
+      : (f) => f
     // ,
     // (window as any).__REDUX_DEVTOOLS_EXTENSION__
-    composeWithDevTools()
+    // composeWithDevTools()
     //   : (f) => f
   )
 );

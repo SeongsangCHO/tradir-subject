@@ -8,9 +8,7 @@ import { ShadowBottomLine } from "styles/Mixin";
 const Header = () => {
   return (
     <Container>
-      <LogoWrapper>
-        <Link to="/home">Secho&apos;s Beer Shop</Link>
-      </LogoWrapper>
+      <Link to="/home">Secho&apos;s Beer Shop</Link>
       <MenuNav>
         <NavLink to="/beerlist">Beer List</NavLink>
         <CartLinkContainer>
@@ -42,7 +40,7 @@ const Container = styled.header`
 
   & a.active,
   & a:hover {
-    color: ${({ theme }) => theme.colors.primaryDark};
+    color: ${({ theme }) => theme.colors.primaryInWhite};
   }
 `;
 
@@ -53,6 +51,6 @@ const MenuNav = styled.nav`
 
 const LogoWrapper = styled.div`
   & > a {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 `;

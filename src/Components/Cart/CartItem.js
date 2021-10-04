@@ -15,7 +15,10 @@ const CartItem = ({ item }) => {
   }, [item.id]);
   return (
     <Item key={item.id}>
-      <DeleteButton onClick={handleDeleteButtonClick}>
+      <DeleteButton
+        aria-label="cart item delete button"
+        onClick={handleDeleteButtonClick}
+      >
         <DeleteOutlined alt="cart item delete button" />
       </DeleteButton>
       <CartImageWrapper>

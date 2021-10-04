@@ -14,6 +14,9 @@ BeerImage.propTypes = {
 export default BeerImage;
 
 const Image = styled.img`
+  width: 35px;
+  height: 75px;
   max-width: 75px;
   max-height: 75px;
+  object-fit: contain;
 `;

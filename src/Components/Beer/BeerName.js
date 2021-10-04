@@ -27,7 +27,7 @@ const Container = styled.button`
   text-overflow: ellipsis;
   cursor: pointer;
   overflow: hidden;
-  background-color: ${({ theme }) => theme.colors.primaryDark};
+  background-color: ${({ theme }) => theme.colors.primaryInWhite};
   color: white;
   &:hover {
     background-color: ${({ theme }) => theme.colors.primary};
