@@ -11,7 +11,7 @@ const Footer = () => {
         target="_blank"
         rel="noreferrer"
       >
-        <GitHub />
+        <GitHub aria-label="github link" />
       </a>
     </Container>
   );
