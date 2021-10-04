@@ -262,7 +262,10 @@ useEffect(() => {
 <img width="980" alt="스크린샷 2021-10-02 오후 3 46 36" src="https://user-images.githubusercontent.com/55486644/135706620-083ecb2b-f60e-4a77-aa77-d5a62708af70.png">
 
 - 1단위로 지정했을 경우의 사진
-- 현재 5단위로 지정한 `ABV_STANDARD` 값으로 범위 조정 가능함 
+
+
+- **현재 5단위로 지정하여 구현함, 상수파일에서 `ABV_STANDARD` 값으로 필터 범위 조정 가능하도록 구현**
+
 
 <br/>
 
