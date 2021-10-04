@@ -466,3 +466,6 @@ useEffect(() => {
 
 ### Unit Test
 - [Header변경 순서함수를 구현하기 위한 단위테스트 작성](https://github.com/SeongsangCHO/tradir-subject/blob/main/src/test/beerTableColumnOrderChange.test.js)
+
+
+### [LightHouse 관련 이슈 해결하며 정리한 포스팅 작성](https://watermelonlike.tistory.com/187)
