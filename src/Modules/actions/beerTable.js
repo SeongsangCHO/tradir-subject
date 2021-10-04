@@ -1,0 +1,8 @@
+import { BEER_TABLE_COLUMN_HEADER_ACTION_TYPES as T } from "Modules/actions/types";
+
+export const setBeerTableColumnHeader = (columnHeader) => {
+  return {
+    type: T.SET_COLUMN_HEADER,
+    payload: columnHeader,
+  };
+};
