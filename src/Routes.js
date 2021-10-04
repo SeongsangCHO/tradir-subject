@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-// import { Home, BeerList, CartView, Page404 } from "Pages";
 import { Header, Spinner } from "Components/Common";
 import Portal from "Components/Modal/Portal";
 // import ReactGA from "react-ga";
