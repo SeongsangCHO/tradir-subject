@@ -21,7 +21,7 @@ const BEER_TABLE_OPTIONS = {
   headerStyle: {
     position: "unset",
     textAlign: "center",
-    backgroundColor: "#3dc28a",
+    backgroundColor: "#20836A",
     color: "#FFF",
   },
 };
@@ -118,7 +118,7 @@ const BeerTable = () => {
         }}
         actions={[
           (data) => ({
-            icon: () => <ShoppingCartOutlined />,
+            icon: () => <ShoppingCartOutlined aria-label="add cart" />,
             tooltip: checkBeerItemInCart(data.id)
               ? "You have already added"
               : "Add your cart",

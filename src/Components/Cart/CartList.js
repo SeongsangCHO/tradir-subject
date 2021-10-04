@@ -39,7 +39,7 @@ const EmptyCartNotification = styled.div`
   transition: 0.2s;
   padding: 10px 0px;
   font-weight: bold;
-  background-color: ${({ theme }) => theme.colors.primaryDark};
+  background-color: ${({ theme }) => theme.colors.primaryInWhite};
   text-align: center;
   &:hover {
     font-size: 2em;

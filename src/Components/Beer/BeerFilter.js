@@ -64,7 +64,7 @@ const Container = styled.div`
 
 const FilterButton = styled.button`
   background-color: ${(props) =>
-    props.isClicked ? `${props.theme.colors.primaryDark}` : "gray"};
+    props.isClicked ? `${props.theme.colors.primaryInWhite}` : "#5C5C5C"};
   border-radius: 8px;
   padding: 5px;
   color: white;
