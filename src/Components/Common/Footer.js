@@ -10,8 +10,9 @@ const Footer = () => {
         href="https://github.com/SeongsangCHO/tradir-subject"
         target="_blank"
         rel="noreferrer"
+        aria-label="github link"
       >
-        <GitHub aria-label="github link" />
+        <GitHub />
       </a>
     </Container>
   );
