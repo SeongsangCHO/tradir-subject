@@ -1,14 +1,6 @@
-
-
-
-
-
-
 # tradir 과제 [배포주소](https://tradir-subject.netlify.app/)
 
 ---
-
-
 
 ### ✅ 컨벤션
 
@@ -73,6 +65,8 @@
 
 => 사용자는 맥주를 장바구니에 추가 또는 삭제할 수 있다. (다른 /cartView)
 
+<br/>
+
 ### 선택사항
 
 - 맥주 이름 클릭시 해당 맥주 상세정보를 보는 modal 구현
@@ -83,7 +77,7 @@
 
 ---
 
-### ✅ 트러블 슈팅 및 구현사항
+## ✅ 트러블 슈팅 및 구현사항
 
 ### 1. 이슈: material-table drag Item 사라지는 문제
 
@@ -99,9 +93,8 @@
 ![clear](https://user-images.githubusercontent.com/55486644/135827736-8a3d85fe-44bc-4eb9-b9db-76b96b24b98d.gif)
 
 - `position: unset`으로 지정해 문제해결
-- 나머지 기능 완성하고 해당 부분 깊게 확인할 예정
 
-
+<br/>
 
 ### 2. 이슈 : 랜더링마다 heap 사용량 증가
 
@@ -115,7 +108,7 @@
 - Material-table에서 내부적으로 사용하는 drag and drop 라이브러리의 이벤트가 해제되지 않고 계속 쌓이는 것으로 추측했으나 내부 라이브러리 확인시 unmount될 때 이벤트를 모두 해제하는 코드를 확인했고 이벤트가 아니라 th의 내부 스타일링인 width calc이 누적되어서 계속 계산되어 발생하는 이슈로 확인했음.
   - 중첩계산하느라 시간이 계속해서 re-flow 시간이 증가됨
 
-#### 2.1 내부 라이브러리 확인
+#### 2.1 Action) 내부 라이브러리 확인
 
 ```js
 //node_modules/material-table/dist/components/m-table-cell.js
@@ -158,7 +151,7 @@
 
 
 
-#### 2. 코드 원인
+#### 2.2 코드 원인확인
 
 `MaterialTable` 의 columns을 지정하는 값에 state를 넣게되면 문제가 발생함
 
@@ -177,7 +170,7 @@ column={columnsHeader}
 
 - 코드로 테스트해봤을 때도 해당 경우가 맞는 것으로 확인.
 
-
+<br/>
 
 #### 2. 해결
 
@@ -220,9 +213,9 @@ const beerTableReducer = (state = initState, action) => {
 
 - 해당 라이브러리 작성자가 변경사항(row, column)에 대해 추적하기 위해 임의적으로 넣은 값 - [라이브러리 작성자 답변](https://github.com/mbrn/material-table/issues/666)
 
+<br/>
 
-
-### 3. 다중필터
+### 3. 다중필터 구현
 
 > dispatch수행시 toolbar가 unmount되어서 state가 전부 초기화됨 따라서 state를 상위(beerTable)에서 관리했습니다.
 
@@ -263,17 +256,22 @@ useEffect(() => {
   - key값이 곧 범위가 되므로 value에 해당하는 데이터를 넣어주었음
 - 필터버튼을 클릭하면 해당하는 범위의 데이터들을 출력시킴 -> 다중구현 완료
 
+<br/>
+
+
 <img width="980" alt="스크린샷 2021-10-02 오후 3 46 36" src="https://user-images.githubusercontent.com/55486644/135706620-083ecb2b-f60e-4a77-aa77-d5a62708af70.png">
 
 - 1단위로 지정했을 경우의 사진
 - 현재 5단위로 지정한 `ABV_STANDARD` 값으로 범위 조정 가능함 
 
+<br/>
+
 <img width="327" alt="스크린샷 2021-10-02 오후 3 47 21" src="https://user-images.githubusercontent.com/55486644/135706641-dc29d418-880d-4283-842d-c9dd91a7f8d0.png">
 
 - 10단위로 지정했을 경우
 
-
-
+<br/>
+<br/>
 
 
 ### 4. 스타일이슈 : Portal을 사용함으로써 modal 구현시 z-index를 사용하지 않아도 되었으나 table 라이브러리 우선순위로 인해 Header가 가려짐
@@ -286,17 +284,17 @@ useEffect(() => {
 ![스크린샷 2021-10-02 오전 1 00 42](https://user-images.githubusercontent.com/55486644/135651764-cd317397-a3fe-46b1-a613-1496c826a0d7.png)
 
 - 모달 Open시 header의 z-index로 인해 모달 dim위에 Header가 보여짐
-- dim에 header보다 높은 z-index를 두어 문제 해결했음
+- dim에 header보다 높은 z-index를 두어 문제 **해결했음**
 
 ![스크린샷 2021-10-02 오전 1 02 29](https://user-images.githubusercontent.com/55486644/135652022-6b544135-d086-4096-b403-2f5e93335b3a.png)
 
 - Modal open state를 hooks가 아닌 전역에서 관리하게 하여 header를 visible hidden을 하여 숨기는 방법 등을 적용해도 될 것 같음.
 
-
+<br/>
 
 ### 5. 에러처리
 
-![errormodal](https://user-images.githubusercontent.com/55486644/135754125-d8231628-4db2-419e-955a-e5306c1deecb.mov)
+![errormodal](https://user-images.githubusercontent.com/55486644/135828594-e398efd8-c4b6-4a61-b760-5fa3c15a4bc0.gif)
 
 - api요청(https://api.punkapi.com/v2/beers)에 대한 에러가 발생했을 때 전역 state의 status에 따라 해당 modal출력하도록 구현
 
@@ -304,12 +302,13 @@ useEffect(() => {
 
 - **실제 배포환경에서 동일 IP의 잦은 요청으로 인해 요청제한이 발생할 수 있음을 확인하였습니다.**
 
-  
+  <br/>
 
 ![스크린샷 2021-10-03 오후 9 43 26](https://user-images.githubusercontent.com/55486644/135754191-49f8e476-4095-4686-b869-fcedeae4f748.png)
 
 - 잘못된 경로에 접근시 해당 페이지 출력하도록 구현
 
+<br/>
 
 
 ### ✅ LightHouse (런타임환경)
@@ -354,7 +353,7 @@ useEffect(() => {
 - Font를 다운로드받기 위해 외부 스타일시트(link태그)를 다운로드 받아오는 방식으로 짆애했는데 CSS로 내재하여 DOM트리 랜더 블로킹을 제거
 - `font-display: swap;` 속성 추가로 웹 폰트 로딩여부 관계없이 항상 텍스트가 보이도록 지정함[웹 폰트 사용과 최적화의 최근 동향](https://d2.naver.com/helloworld/4969726)
 
-
+<br/>
 
 ### ✅ netlify를 통한 정적배포환경
 
@@ -373,6 +372,7 @@ useEffect(() => {
   - Build time에 모듈을 불러오는 것이 아닌, 런타임에 그때그때 맞는 모듈을 불러올 수 있음.
 
 
+<br/>
 
 #### 접근성 높이기
 
@@ -425,10 +425,7 @@ useEffect(() => {
   - Background색을 더 어둡게 변경
 
 
-
-
-
-
+<br/>
 
 ### ✅ 결과
 
