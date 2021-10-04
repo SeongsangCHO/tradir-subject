@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
       font-weight: normal;
       font-style: normal;
+      font-display: swap;
   }
     box-sizing: border-box;
 
